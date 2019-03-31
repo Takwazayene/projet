@@ -31,32 +31,32 @@
         <div class="animate form login_form">
           <section class="login_content">
             <form   method="POST" action="verifierUtilisateur.php" >
-              <h1>Login Form</h1>
+              <h1>Bienvenu </h1>
               <div>
-                <input type="text" name="id" class="form-control" placeholder="Username"  required="" />
+                <input type="text" name="id" class="form-control" placeholder="Identifiant"  required="" />
               </div>
               <div>
-                <input type="password" name="mdp" class="form-control" placeholder="Password" required="" />
+                <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required="" />
               </div>
               <div>
-			    <button id="send" type="submit" class="btn btn-success">Submit</button>
+			    <button id="send" type="submit" class="btn btn-success">Se connecter</button>
                <!-- <a class="btn btn-default submit" href="index.html">Log in</a> !-->
-                <a class="reset_pass" href="#">Lost your password?</a>
+                <a class="reset_pass" href="#">Mot de passe oublié?</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="#signup" class="to_register"> Create Account </a>
+                <p class="change_link">Nouveau sur le site?
+                  <a href="#signup" class="to_register"> Créer un compte </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                  <h1> ETSZAYENE </h1>
+                  <p>©2019 Tous les droits sont réservés . ETSZAYENE ! est un distributeur de composants extérieurs automobile .  Distributeur Autorisé</p>
                 </div>
               </div>
             </form>
@@ -65,34 +65,35 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
-              <h1>Create Account</h1>
+            <form  method="POST" action="../ajoutClient.php">
+              <h1>Créer un compte</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Username" required="" />
+                <input type="text" name="id" class="form-control" placeholder="identifiant" required="" />
               </div>
               <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
+                <input type="email" name="email" class="form-control" placeholder="Email" required="" />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Submit</a>
+            
+				<button id="send" type="submit" class="btn btn-success">Créer</button>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Already a member ?
-                  <a href="#signin" class="to_register"> Log in </a>
+                <p class="change_link">Déjà un client ?
+                  <a href="#signin" class="to_register"> Se connecter </a>
                 </p>
 
                 <div class="clearfix"></div>
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                  <h1> ETSZAYENE</h1>
+                  <p>©2019 Tous les droits sont réservés . ETSZAYENE ! est un distributeur de composants extérieurs automobile .  Distributeur Autorisé</p>
                 </div>
               </div>
             </form>

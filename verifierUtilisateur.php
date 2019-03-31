@@ -16,7 +16,8 @@ $conn = config::getConnexion();
    $id = trim($_POST['id']);
    $mdp= trim($_POST['mdp']);
     // $query ="SELECT * FROM utilisateurs WHERE id ='".$id."' and mdp ='".$mdp."' ";
-     $query="select * from utilisateurs WHERE id=? and occupation ='admin' ";
+     //$query="select * from utilisateurs WHERE id=? and occupation ='admin' ";
+	 $query="select * from utilisateurs WHERE id=?  ";
      $prep = $conn->prepare($query);
      $prep->bindValue(1, $id, PDO::PARAM_STR);
      $prep->execute();
@@ -24,16 +25,21 @@ $conn = config::getConnexion();
     foreach ($user as $u) {
                           if (($u['mdp']==$mdp) && ($u['id']==$id))
                           {
-                         // $_SESSION['id'] = $u['id'];
-                          //echo "truuuuuue" ;
-						   //header('Location: C:/wamp64/www/projet2/public/production/index.html');
-						  // require_once('C:/wamp64/www/projet2/public/production/index.html');
+							  if ($u['occupation']== "client")
+						  {
+							   ?>
+                  
+						    <script> document.location.href ='../../etsz/public/index.html'; </script>
+                          <?php
+						  }
+                        
 						  
 						  ?>
                   
 						    <script> document.location.href ='../../public/production/index.html'; </script>
                           <?php
                           }
+						  
                          /*else if ($u['mdp']==$mdp)
 						 {
 							 ?>
