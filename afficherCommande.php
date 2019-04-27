@@ -1,5 +1,5 @@
 <?php
- $currentPage="panier";
+ $currentPage="commande";
 include '../../base.php' ;
 
 
@@ -11,9 +11,9 @@ include '../../base.php' ;
     }
  $user = config::getUserSession();
 $id=$user->getId() ; 
-
-$panier1C=new PanierC();
-$listePaniers=$panier1C->afficherPaniersByID($id);
+$ligneCommande1C=new LigneCommandeC();
+//$panier1C=new PanierC();
+$listeCommandes=$ligneCommande1C->afficherCommandesByID($id);
 $total = 0;
 
 //var_dump($listeEmployes->fetchAll());
@@ -23,7 +23,7 @@ $total = 0;
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Liste Paniers</h2>
+                    <h2>Historique des Commandes</h2>
                 </div>
             </div>
         </div>
@@ -105,7 +105,6 @@ $total = 0;
                                          
                                             <th class="product-subtotal">Total</th>
 								
-                                            <th class="product-remove">Modifier</th>
                                             <th class="product-remove">Supprimer</th>
                                         </tr>
                                     </thead>
@@ -113,21 +112,19 @@ $total = 0;
                                         <tr class="cart_item">
                                             
 <?PHP
-foreach($listePaniers as $row){
+foreach($listeCommandes as $row){
 
 	?>
    
 	<tr>
 	<!--<td><?PHP //echo $row['idPanier']; ?></td> !-->
 	<td><?PHP echo $row['nomProd']; ?></td>
-	<td><?PHP echo $row['quantite']; ?></td>
+	<td><?PHP echo $row['qte']; ?></td>
 	<td><?PHP echo $row['prix']; ?></td>
-	<td>$ <?php echo number_format($row["quantite"] * $row["prix"], 2);?></td>
-	 
-    <td><a href="modifierPanier.php?idPanier=<?PHP echo $row['idPanier']; ?>">
-    Modifier</a></td>
+	<td>$ <?php echo number_format($row["qte"] * $row["prix"], 2);?></td>
+	
 
-    <td><a href="supprimerPanier.php?idPanier=<?PHP echo $row['idPanier']; ?>">
+    <td><a href="supprimerPanier.php?idPanier=<?PHP echo $row['idCom']; ?>">
     Supprimer</a></td>
     </tr>
     </tr>
@@ -137,13 +134,13 @@ foreach($listePaniers as $row){
      </form>
     </td> !-->
     <?php
-                $total = $total + ($row["quantite"] * $row["prix"]);
+                $total = $total + ($row["qte"] * $row["prix"]);
                         
                     ?>
                 
-  <input type="hidden" name="idProduit" value="<?php echo $row['idProduit']; ?>" />
+  <input type="hidden" name="idProduit" value="<?php echo $row['idProd']; ?>" />
   <input type="hidden" name="idClt" value="<?php echo $id ; ?>" />
-    <input type="hidden" name="qte" value="<?php echo $row['quantite']; ?>" />
+    <input type="hidden" name="qte" value="<?php echo $row['qte']; ?>" />
     <input type="hidden" name="prix" value="<?php echo  $row['prix'] ;?>" />                  
     <input type="hidden" name="etat" value="<?php echo 0 ?>" /> 
 
@@ -164,18 +161,6 @@ foreach($listePaniers as $row){
 											
 
                             
-                                        <tr>
-                                            <td class="actions" colspan="8">
-                                                <div class="coupon">
-                                                    <label for="coupon_code">Coupon:</label>
-                                                    <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                                                </div>
-                                                 <input type="hidden" name="total" value="<?php echo $total; ?>" />
-                                                <input type="submit"value="passer Commande" name="passerCommande" class="checkout-button button alt wc-forward">
-                                            </td>
-											
-                                        </tr>
                                     </tbody>
                                 </table>
                             </form>
@@ -209,31 +194,7 @@ foreach($listePaniers as $row){
                             </div>  !-->
 
 
-                            <div class="cart_totals ">
-                                <h2>Informations Paniers</h2>
-
-                                <table cellspacing="0">
-                                    <tbody>
-                                        <tr class="cart-subtotal">
-                                            <th>Prix total</th>
-                                            <td><strong><span class="amount">$ <?php echo number_format($total, 2); ?></span></strong></td>
-                                        </tr>
-
-                                         <tr class="order-total">
-                                            <th>Prix aprés promotions</th>
-                                            <td><span class="amount">$ <?php echo number_format($total, 2); ?></span> </td>
-                                        </tr>
-
-                                        <tr class="shipping">
-                                            <th>Status livraison</th>
-                                            <td>Non</td>
-                                        </tr>
-
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-
+                          
 
                             <form method="post" action="#" class="shipping_calculator">
                                <!-- <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2> !-->

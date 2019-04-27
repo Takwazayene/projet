@@ -1,9 +1,10 @@
 <?PHP
-include "../../core/panierC.php";
+//include "../../core/panierC.php";
+include "../../base.php";
 $panierC=new PanierC();
-if (isset($_POST["idPanier"])){
-	$panierC->supprimerPanier($_POST["idPanier"]);
-	header('Location: afficherPanier.php');
-}
+if (isset($_GET["idPanier"])){
+	$panierC->supprimerPanier($_GET["idPanier"]);
+	header('Location:afficherPanier.php');
+} 
 
 ?>

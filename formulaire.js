@@ -1,4 +1,6 @@
-function verifierNom (){
+
+
+/*function verifierNom (){
 	const ver=document.getElementById("nom").value;
 	var letters = /^[A-Za-z- -]+$/;
 	const erreur=document.getElementById("erreurnom");
@@ -106,9 +108,25 @@ function verifierQuantite (){
 			return false;
 	}
 	
+}*/
+
+function verifierQuantite () {
+var qte =parseInt(document.getElementById('quantite').value);//pour bien dire au javascript que c'est un nombre et pas une chaîne de caractères
+//Tu peux utiliser parseFloat() à la place de ParseInt() si la valeur peut être un nombre à virgule.
+const erreur=document.getElementById("erreurQuantite");
+if(qte > 0) {
+	erreur.innerHTML="";
+			return true;
+//le nombre est bon
+} else {
+	erreur.innerHTML="verifier quantite : quantite doit être positive";
+			return false;
+//dire à l'utilisateur qu'il a mal remplis
+}
 }
 
-function verifierTotal (){
+
+/*function verifierTotal (){
 	const ver=document.getElementById("total").value;
 	const erreur=document.getElementById("erreurTotal");
 	if(ver!==""){
@@ -191,7 +209,7 @@ function verifierProduit (){
 			return false;
 	}
 	
-}
+}*/
 
 
 
@@ -199,17 +217,30 @@ function verifierProduit (){
 
 
 
-function executerverif() {
+/*function executerverif() {
 	verifierNom();
-	/*verifierPrenom ();
+	verifierPrenom ();
 verifierAdresse ();
-verifierVille ();*/
+verifierVille ();
 verifierCodepostal ();
 verifierProduit ();
 verifierQuantite ();
 verifierTotal ();
 verifierEtat();
 if(verifierNom ()  && verifierCodepostal ()&& verifierProduit () && verifierQuantite ()&& verifierTotal ()&& verifierEtat ()){
+return true;
+}
+else return false;
+
+}*/
+
+
+function executerverif() {
+	
+
+verifierQuantite();
+
+if( verifierQuantite()){
 return true;
 }
 else return false;

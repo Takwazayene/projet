@@ -3,8 +3,8 @@
 //include_once "../../entities/Produit.php";
 //include_once "../../base.php" ; 
 include_once dirname(__FILE__) . '/../../base.php';
-include_once dirname(__FILE__) . '/../../entities/Produit.php' ;
-include_once dirname(__FILE__) .  '/../../core/ProduitC.php';
+//include_once dirname(__FILE__) . '/../../entities/Produit.php' ;
+//include_once dirname(__FILE__) .  '/../../core/ProduitC.php';
 
  if(config::getUserSession()==null) {
         header('Location: ../login/login.php');
@@ -28,10 +28,10 @@ if (isset($_GET['id'])){
 		$categorie_id=$row['categorie_id'];
 	}
 	
-include_once "../../core/panierC.php" ;
-include_once "../../entities/panier.php" ;
+//include_once "../../core/panierC.php" ;
+//include_once "../../entities/panier.php" ;
 	
-	$panier1=new panier($idUser,$id,$qte,$prix);
+	$panier1=new panier($idUser,$id,$nom,$qte,$prix);
 	//var_dump($panier1);
 	$panier1C=new PanierC();
 $panier1C->ajouterPanier($panier1,$id);
