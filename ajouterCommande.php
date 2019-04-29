@@ -10,6 +10,7 @@ $total=$_POST['total'];
 $verif=0;
 
 $panier1C=new PanierC();
+$panier2C=new PanierC();
 $listePaniers=$panier1C->afficherPaniersByID($idClt);
 
 
@@ -36,18 +37,19 @@ $employe1C->ajouterEmploye($employe1);*/
 
 
 foreach($listePaniers as $row){
-
+$idPanier=$row["idPanier"]; 
 $idProd=$row["idProduit"]; 
 $qte= $row["quantite"];
 $prix= $row["prix"];
 $nomProd=$row["nomProd"];
-$listeProduit=$produit1C-> recupererProduit($idProd);
+$listeProduit=$produit1C->recupererProduit($idProd);
 foreach($listeProduit as $row){
 
 if ($row['qte']<$qte)
-{    
+{  
+$total=$total-$prix*$qte;
    
-echo "<script type='text/javascript'>alert('$nomProd non valider : quantite introuvable ');
+echo "<script type='text/javascript'>alert('$nomProd n'a pas effectué a la commande: quantite introuvable ');
     </script>";
 ?>
       <script language='Javascript'>
@@ -77,12 +79,12 @@ $verif=1;
 $ligneCommande1=new ligneCommande($idCom,$idProd,$nomProd,$qte,$prix);
 $ligneCommande1C=new LigneCommandeC();
 $ligneCommande1C->ajouterLigneCommande($ligneCommande1); 
+$panier1C->supprimerPanier($idPanier);
 
-
-						  
 	}
 
 }
+
 }
 
 //header('Location: afficherPanier.php');

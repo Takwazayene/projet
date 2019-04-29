@@ -9,7 +9,7 @@ include'../../../baseAdmin.php';
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Statistiques <small>Les produits les plus achetés</small></h3>
+                <h3>Statistiques <small>Nombres d'achats par dates croissante</small></h3>
               </div>
 
               <div class="title_right">
@@ -30,7 +30,7 @@ include'../../../baseAdmin.php';
               <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Statistique sur achats</h2>
+                    <h2>Statistique sur commandes</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -49,7 +49,7 @@ include'../../../baseAdmin.php';
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                           <?php require_once "stat/statAchat.php"; ?>               
+                           <?php require_once "stat/statCommande.php"; ?>               
                    
 
                   </div>

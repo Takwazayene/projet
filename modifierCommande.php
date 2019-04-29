@@ -3,7 +3,7 @@
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>eElectronics - HTML eCommerce Template</title>
+    <title>etsZAYENE</title>
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -35,11 +35,11 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                           <li><a href="#"><i class="fa fa-user"></i> Mon compte</a></li>
+                            <li><a href="#"><i class="fa fa-heart"></i> Avis</a></li>
+                            <li><a href="cart.html"><i class="fa fa-user"></i> Panier</a></li>
+                            <li><a href="checkout.html"><i class="fa fa-user"></i> Check-out</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Se connecter</a></li>
                         </ul>
                     </div>
                 </div>
@@ -76,13 +76,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.html">e<span>Electronics</span></a></h1>
+                        <h1><a href="index.html">ets<span>ZAYENE</span></a></h1>
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        <a href="cart.html">Panier - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
                     </div>
                 </div>
             </div>
@@ -102,14 +102,15 @@
                 </div> 
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
-                        <li><a href="single-product.html">Single product</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li class="active"><a href="checkout.html">Checkout</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="../../public/index.html">Acceuil</a></li>
+                        <li><a href="shop.html">Categories</a></li>
+                        <li><a href="single-product.html">Produits</a></li>
+                        <li><a href="cart.html">Panier</a></li>
+                        <li><a href="commande.php">Commande</a></li>
+						 <li class="active"><a href="afficheCommande.php">afficher Commandes</a></li>
+                        <li><a href="#">Reclamation</a></li>
+                        <li><a href="#">Reservation</a></li>
+                        <li><a href="#">Marketing</a></li>
                     </ul>
                 </div>  
             </div>
@@ -219,7 +220,7 @@ if (isset($_POST['modifier'])){
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>e<span>Electronics</span></h2>
+                        <h2>ets<span>ZAYENE</span></h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>

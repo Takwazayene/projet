@@ -188,10 +188,35 @@ function trierCommande($s)
 
     }
 
+ function traiterCommande($idCom)
+ {
+ 	$sql = "UPDATE commande SET etat=1  where idCom=".$idCom;
+		$db = Config::getConnexion();
+		$req=$db->prepare($sql);
+		try {
+			$req->execute();
+			return true;
+		}
+		catch (Exception $e){
+			return $e->getMessage();
+		}
+	}
 
 
 
-    
+
+ function filtrerCommande($f) 
+ {
+
+       $query = "select * from commande where etat LIKE ?";
+		 	$db = config::getConnexion();
+         $result = $db->prepare($query);
+         $result->bindValue(1, "%$f%", PDO::PARAM_STR);
+         $result->execute();
+           return $result->fetchAll();
+
+
+ }
 
 	
 	/*function rechercherListeUtilisateurs($tarif){

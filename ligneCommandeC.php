@@ -59,11 +59,11 @@ function afficherCommande ($commande){
             die('Erreur: '.$e->getMessage());
         }	
 	}
-	function supprimerCommande($idCom){
-		$sql="DELETE FROM commande where idCom= :idCom";
+	function supprimerLigneCommande($id){
+		$sql="DELETE FROM lignecommande where id= :id";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
-		$req->bindValue(':idCom',$idCom);
+		$req->bindValue(':id',$id);
 		try{
             $req->execute();
            // header('Location: index.php');
@@ -170,6 +170,50 @@ try{
 
 
 }
+
+
+
+
+    function afficherLCToadmin($id) {
+
+	$sql="SElECT * from lignecommande where idCom=$id ";
+
+		$db = config::getConnexion();
+		try
+		{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+
+}
+
+
+  function trierListeCommande($s,$id)
+    {
+         	
+		if ($s == "id") $sql = "SELECT * from lignecommande where idCom=$id order by id desc  ";
+      else if ($s == "qte") $sql = "SELECT * from lignecommande   where idCom=$id order by qte desc ";
+      else if ($s== "prix") $sql = "SELECT * from lignecommande where idCom=$id order by prix desc  ";
+	  $db = config::getConnexion();
+	 try
+		{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+        
+		    
+    }
+
+
+
+
+
 	
 	/*function rechercherListeUtilisateurs($tarif){
 		$sql="SELECT * from utilisateurs where id=$tarif";

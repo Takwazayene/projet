@@ -1,15 +1,14 @@
 <?php    
-include'../../../baseAdmin.php';
+include '../../../baseAdmin.php';
 ?>
-    
-<?php startblock("main");?>
 
+<?php startblock("main");?>
         <!-- page content -->
        
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Statistiques <small>Les produits les plus achetés</small></h3>
+                <h3>Statistiques sur <small>Produits,Clients,Commandes</small></h3>
               </div>
 
               <div class="title_right">
@@ -23,14 +22,14 @@ include'../../../baseAdmin.php';
                 </div>
               </div>
             </div>
-            
+
             <div class="clearfix"></div>
 
             <div class="row">
-              <div class="col-md-8 col-sm-8 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Statistique sur achats</h2>
+                    <h2>Produits<small>Statistique</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -49,36 +48,29 @@ include'../../../baseAdmin.php';
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                           <?php require_once "stat/statAchat.php"; ?>               
-                   
-
+                     <?php require_once "stat/chart.php"; ?>
                   </div>
                 </div>
               </div>
 
-              
-
-
-
-
-             
-
-             
-
-           
-
-              
-
-
-              
-
-             
-
-
-              
-              </div>
+        
             </div>
-       
-                <!-- /page content -->
+            <div class="clearfix"></div>
+            <div class="row">
+              
 
-    <?php endblock();?>
+              
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+             
+
+             
+            </div>
+          </div>
+        
+        <!-- page content -->
+
+            
+<?php endblock();?>
+

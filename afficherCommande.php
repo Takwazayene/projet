@@ -1,240 +1,147 @@
-<?php
- $currentPage="commande";
-include '../../base.php' ;
-
-
- startblock('content') ;
-
-
- if(config::getUserSession()==null) {
-        header('Location: ../login/login.php');
-    }
- $user = config::getUserSession();
-$id=$user->getId() ; 
-$ligneCommande1C=new LigneCommandeC();
-//$panier1C=new PanierC();
-$listeCommandes=$ligneCommande1C->afficherCommandesByID($id);
-$total = 0;
-
+ <?PHP
+//include "../core/commandeC.php";
+include '../../../baseAdmin.php';
+$commande1C=new CommandeC();
+$commande2C=new CommandeC();
+$listeCommandes=$commande1C->afficherCommandes();
+ 
 //var_dump($listeEmployes->fetchAll());
 ?>
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Historique des Commandes</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-   
-    
+  
+<?php startblock("main");?>
+        
 
-    <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Search Products</h2>
-                        <form action="#">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
-                    </div>
-                    
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Products</h2>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>                             
-                        </div>
-                    </div>
-                    
-                    <div class="single-sidebar">
-                        <h2 class="sidebar-title">Recent Posts</h2>
-                        <ul>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
+            <div class="row"
+         
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Affichage listes<small>Commandes</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
                         </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-8">
-                    <div class="product-content-right">
-                        <div class="woocommerce">
-                           <form method="POST" action="ajouterCommande.php" >
-                                <table cellspacing="0" class="shop_table cart">
-                                    <thead>
-                                        <tr>
-										  
-											 <!--<th class="product-name">id Panier</th> !-->
-                                       
-                                            <th class="product-thumbnail">nom Produit</th>
-									       <th class="product-quantity">Quantite</th>
-                                            <th class="product-price">Prix</th>
-                                         
-                                            <th class="product-subtotal">Total</th>
-								
-                                            <th class="product-remove">Supprimer</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="cart_item">
-                                            
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <p class="text-muted font-13 m-b-30">
+                    <form  method="POST" >
+                        <select name="s" value="" placeholder="Street address" id="billing_address_1"  class="input-text ">
+                                       <option value="date">date</option>
+                                       <option value="quantite">quantite</option>
+                                       <option value="total">total</option>
+                                 </select>
+									  <input type="submit" name="trier" value="trier"> 
+
+                     <select name="f" value="" placeholder="Street address" id="billing_address_1"  class="input-text ">
+                                       <option value="1">traité</option>
+                                       <option value="0">non traité</option>
+                                 </select>
+                    <input type="submit" name="filtrer" value="filtrer"> 
+
+                               </form>
+							   
+							 <?PHP  
+                                  
+							 if (isset($_POST["trier"])){
+						
+							$listeCommandes=$commande1C->trierCommande($_POST['s']);
+							//$listeCommandes=$commande1C->afficherCommandes();
+							 }
+
+                   if (isset($_POST["filtrer"])){
+            
+              $listeCommandes=$commande1C->filtrerCommande($_POST['f']);
+             
+               }
+
+
+							 
+						 ?>
+							
+							
+						
+    
+							 
+							   
+				
+                    </p>
+					                         <br/> <br/>
+                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>id commande</th>
+                          <th>id client</th>
+                          <th>date</th>
+                          <th>livraison</th>
+                          <th>quantite</th>
+                          <th>total</th>
+                          <th>etat</th>
+                          <th>Détails</th>
+                          <th>supprimer</th>
+                          <th>Traité--Non traité</th>
+                          <th>contacter</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                     
+                                                             
 <?PHP
 foreach($listeCommandes as $row){
-
+    if( $row['etat']==1)
+        $color = "#01DFA5";
+    else if($row['etat']==0)
+        $color = "#FE8C7A";
 	?>
-   
-	<tr>
-	<!--<td><?PHP //echo $row['idPanier']; ?></td> !-->
-	<td><?PHP echo $row['nomProd']; ?></td>
-	<td><?PHP echo $row['qte']; ?></td>
-	<td><?PHP echo $row['prix']; ?></td>
-	<td>$ <?php echo number_format($row["qte"] * $row["prix"], 2);?></td>
-	
-
-    <td><a href="supprimerPanier.php?idPanier=<?PHP echo $row['idCom']; ?>">
-    Supprimer</a></td>
-    </tr>
-    </tr>
-    <!-- <td><form method="POST" action="supprimerPanier.php">
-    <input type="submit" name="supprimer" value="supprimer">
-    <input type="hidden" value="<?PHP //echo $row['idPanier']; ?>" name="idPanier">
-     </form>
-    </td> !-->
-    <?php
-                $total = $total + ($row["qte"] * $row["prix"]);
-                        
-                    ?>
-                
-  <input type="hidden" name="idProduit" value="<?php echo $row['idProd']; ?>" />
-  <input type="hidden" name="idClt" value="<?php echo $id ; ?>" />
-    <input type="hidden" name="qte" value="<?php echo $row['qte']; ?>" />
-    <input type="hidden" name="prix" value="<?php echo  $row['prix'] ;?>" />                  
-    <input type="hidden" name="etat" value="<?php echo 0 ?>" /> 
-
-	
-	
-	
-    
-  
+	<tr  style="background: <?php echo $color?>">
+	<td><?PHP echo $row['idCom']; ?></td>
+	<td><?PHP echo $row['idClt']; ?></td>
+	<td><?PHP echo $row['date']; ?></td>
+	<td><?PHP echo $row['livraison']; ?></td>
+   <td><?PHP echo $row['quantite']; ?></td>
+	<td><?PHP echo $row['total']; ?></td>
+	<td><?PHP echo $row['etat']; ?></td>
+  <td><a href="afficherLigneCommande.php?idCom=<?PHP echo $row['idCom']; ?>">
+  lister</a></td>
+	<td><form method="POST" action="supprimerCommande.php">
+	<input type="submit" name="supprimer" value="supprimer">
+	<input type="hidden" value="<?PHP echo $row['idCom']; ?>" name="idCom">
+	</form>
+	</td>
+	<td><a href="traiterCommande.php?idCom=<?PHP echo $row['idCom']; ?>">
+	Traiter</a></td>
+  <td><a href="sms/send-sms.php?idCom=<?PHP echo $row['idCom']; ?>">
+  Envoyer SMS</a></td>
+	</tr>
 	<?PHP
-}
+	}
 ?>
-	<tr>
-	<td colspan="3" align="right">Total</td>
-    <td align="right">$ <?php echo number_format($total, 2); ?></td>
-	<td></td>
-					</tr>
-                                           
-											
+                      </tbody>
 
-                            
-                                    </tbody>
-                                </table>
-                            </form>
+                    </table>
+                      </div>
+                <form action="pdf/imprimer2.php">
+                  <button type="submit" class="btn btn-danger" name="imprimer">Imprimer</button>   
+                </form>
+					
+					
+                  </div>
 
-                            <div class="cart-collaterals">
-
-
-                          <!--  <div class="cross-sells">
-                                <h2>You may be interested in...</h2>
-                                <ul class="products">
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
-
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-4.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
-                                </ul>
-                            </div>  !-->
-
-
-                          
-
-                            <form method="post" action="#" class="shipping_calculator">
-                               <!-- <h2><a class="shipping-calculator-button" data-toggle="collapse" href="#calcalute-shipping-wrap" aria-expanded="false" aria-controls="calcalute-shipping-wrap">Calculate Shipping</a></h2> !-->
-
-                                <section id="calcalute-shipping-wrap" class="shipping-calculator-form collapse">
-
-                                <p class="form-row form-row-wide">
-                                <select rel="calc_shipping_state" class="country_to_state" id="calc_shipping_country" name="calc_shipping_country">
-                                    <option value="">Select a country…</option>
-                                    <option value="AX">Åland Islands</option>
-                                    <option value="AF">Afghanistan</option>
-                                    <option value="AL">Albania</option>
-                                    <option value="DZ">Algeria</option>
-                                    <option value="AD">Andorra</option>
-                                    <option value="AO">Angola</option>
-                                    <option value="AI">Anguilla</option>
-                          
-                                </select>
-                                </p>
-
-                                <p class="form-row form-row-wide"><input type="text" id="calc_shipping_state" name="calc_shipping_state" placeholder="State / county" value="" class="input-text"> </p>
-
-                                <p class="form-row form-row-wide"><input type="text" id="calc_shipping_postcode" name="calc_shipping_postcode" placeholder="Postcode / Zip" value="" class="input-text"></p>
-
-
-                                <p><button class="button" value="1" name="calc_shipping" type="submit">Update Totals</button></p>
-
-                                </section>
-                            </form>
-
-
-                            </div>
-                        </div>                        
-                    </div>                    
                 </div>
-            </div>
-        </div>
-    </div>
+         
+         
+         
+<?php endblock();?>
 
-<?php endblock() ?>
-
-    
-   

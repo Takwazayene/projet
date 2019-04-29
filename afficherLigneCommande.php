@@ -1,13 +1,17 @@
 <?PHP
+//include "../entities/commande.php";
 //include "../core/commandeC.php";
 include '../../../baseAdmin.php';
-$panier1C=new PanierC();
-$panier2C=new PanierC();
-$listePaniers=$panier1C->afficherPaniers();
 
-//var_dump($listeEmployes->fetchAll());
+
+if (isset($_GET['idCom'])){
+$ligneCommande2C=new LigneCommandeC();
+$ligneCommandeC=new LigneCommandeC();
+$listeLigneCommandes=$ligneCommandeC->afficherLCToadmin($_GET["idCom"]);
+ 
+}
 ?>
-  
+
 <?php startblock("main");?>
         
 
@@ -17,7 +21,7 @@ $listePaniers=$panier1C->afficherPaniers();
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Affichage listes<small>Paniers</small></h2>
+                    <h2>Affichage listes<small>Ligne Des Commandes</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -38,60 +42,59 @@ $listePaniers=$panier1C->afficherPaniers();
                   <div class="x_content">
                     <p class="text-muted font-13 m-b-30">
                     <form  method="POST" >
-                      
-
-                   <input type="text" name="nomProd" value="" placeholder="nom produit" id="nomProd"  class="input-text ">
-                    <input type="submit" name="filtrer" value="filtrer"> 
+                        <select name="s" value="" placeholder="Street address" id="billing_address_1"  class="input-text ">
+                                       <option value="id">id</option>
+                                       <option value="qte">quantite</option>
+                                       <option value="prix">Prix</option>
+                                 </select>
+									  <input type="submit" name="trier" value="trier"> 
 
                                </form>
 							   
 							 <?PHP  
-
-                   if (isset($_POST["filtrer"])){
-            
-              $listePaniers=$panier2C->filtrerPanier($_POST['nomProd']);
-             
-               }
-
-
+                                  
+							 if (isset($_POST["trier"])){
+						
+							$listeLigneCommandes=$ligneCommande2C->trierListeCommande($_POST['s'],$_GET["idCom"]);
+							//$listeCommandes=$commande1C->afficherCommandes();
+							 }
 							 
 						 ?>
-							
-							
-						
-    
 							 
 							   
 				
                     </p>
-					                         <br/> <br/>
+					
                     <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                       <thead>
                         <tr>
-                          <th>id Panier</th>
-                          <th>id Client</th>
-                          <th>nom Produit</th>
-                          <th>id Produit</th>
+                          <th>Id </th>
+                          <th>Id Commande</th>
+                          <th>Id Produit</th>
+                          <th>Nom Produit</th>
                           <th>Quantite</th>
-                          <th>prix</th>
-                
+                          <th>Prix</th>
+              
                         </tr>
                       </thead>
                       <tbody>
                      
                                                              
 <?PHP
-foreach($listePaniers as $row){
+
+
+foreach($listeLigneCommandes as $row){
    
 	?>
-	<tr>
-	<td><?PHP echo $row['idPanier']; ?></td>
-	<td><?PHP echo $row['idClient']; ?></td>
+	<tr >
+	<td><?PHP echo $row['id']; ?></td>
+	<td><?PHP echo $row['idCom']; ?></td>
+	<td><?PHP echo $row['idProd']; ?></td>
 	<td><?PHP echo $row['nomProd']; ?></td>
-	<td><?PHP echo $row['idProduit']; ?></td>
-   <td><?PHP echo $row['quantite']; ?></td>
+   <td><?PHP echo $row['qte']; ?></td>
 	<td><?PHP echo $row['prix']; ?></td>
-	
+
+
 	</tr>
 	<?PHP
 	}
@@ -100,7 +103,10 @@ foreach($listePaniers as $row){
 
                     </table>
                       </div>
-               
+                <form action="pdf/imprimer2.php">
+                  <button type="submit" class="btn btn-danger" name="imprimer">Imprimer</button>   
+                </form>
+					
 					
                   </div>
 
@@ -110,3 +116,6 @@ foreach($listePaniers as $row){
          
 <?php endblock();?>
 
+
+
+  

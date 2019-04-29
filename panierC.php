@@ -17,8 +17,7 @@ function afficherPanier ($Panier)
 
 	function ajouterPanier($Panier,$id)
 	{   
-		$verif= "SELECT COUNT(*) FROM panier WHERE idPanier =$id" ; 
-		if ($verif==0) {
+		
 		$sql="insert into panier (idPanier,idClient,nomProd,idProduit,quantite,prix) values (:idPanier,:idClient,:nomProd,:idProduit,:quantite,:prix)";
 		$db = config::getConnexion();
 		try{
@@ -50,8 +49,8 @@ function afficherPanier ($Panier)
             
         }
     }
-    else echo "erreur" ;
-    }
+    
+    
     
 		
 	
@@ -190,6 +189,103 @@ function afficherPaniersByID($id) {
 
 
 }
+
+ function afficherPaniersByIDandProd($id,$idProd)
+ {
+  $sql="SElECT count(*) from panier where idClient=$id AND idProduit=$idProd";
+		$db = config::getConnexion();
+		try
+		{
+		$liste=$db->query($sql);
+		$result = $liste->fetch();
+        $count = $result[0];
+		return $count;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+     /*$num_of_rows = $liste->rowCount() ;
+     return $num_of_rows ;*/
+
+
+ }
+
+ function afficherPaniers2($idUser,$id)
+ {
+
+  $sql="SElECT * from panier where idClient=$idUser AND idProduit=$id";
+		$db = config::getConnexion();
+		try
+		{
+		$liste=$db->query($sql);
+		
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+
+ }
+
+
+		function supprimerAllPanier($idPanier)
+	{
+		$sql="DELETE FROM panier where idPanier= :idPanier";
+		$db = config::getConnexion();
+        $req=$db->prepare($sql);
+		$req->bindValue(':idPanier',$idPanier);
+		try{
+            $req->execute();
+           // header('Location: index.php');
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+
+
+
+			function setStock($idPanier,$qte){
+		$sql="UPDATE Panier SET quantite=$qte WHERE idPanier=$idPanier";
+		
+		$db = config::getConnexion();
+		
+try{		
+        $req=$db->prepare($sql);
+	   
+		$req->bindValue(':qte',$qte);
+		
+            $s=$req->execute();
+			
+       
+        }
+        catch (Exception $e){
+            echo " Erreur ! ".$e->getMessage();
+   echo " Les datas : " ;
+  //print_r($datas);
+        }
+		
+	}
+
+
+
+
+ 	function filtrerPanier($nomProd)
+
+	{ $sql="SElECT * from panier where nomProd=:nomProd ";
+		
+		$db = config::getConnexion();
+		try
+		{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+	}
+
+
 
 	
 	

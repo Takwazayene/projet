@@ -1,9 +1,10 @@
 <?PHP
-include "../../core/commandeC.php";
+//include "../core/commandeC.php";
+include '../../../baseAdmin.php';
 $commandeC=new CommandeC();
 if (isset($_POST["idCom"])){
 	$commandeC->supprimerCommande($_POST["idCom"]);
-	header('Location: afficheCommande.php');
+	header('Location: afficherCommande.php');
 }
 
 ?>
